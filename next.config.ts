@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
    webpack: (config) => {
-    const fileLoaderRule = config.module.rules.find((rule) =>
+    const fileLoaderRule = config.module.rules.find((rule: { test: { test: (arg0: string) => unknown; }; }) =>
       rule.test?.test?.('.svg')
     );
 
