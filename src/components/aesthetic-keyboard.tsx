@@ -172,53 +172,6 @@ function LinkOrButton(
   );
 }
 
-// LAST WORKING:::
-// function cornerAnglesInPercent(
-//   width: number,
-//   height: number
-// ): {
-//   tl: { angle: string; percent: number };
-//   tr: { angle: string; percent: number };
-//   br: { angle: string; percent: number };
-//   bl: { angle: string; percent: number };
-// } {
-//   const centerX = width / 2;
-//   const centerY = height / 2;
-
-//   const corners: { [key: string]: [number, number] } = {
-//     // ORDER MATTERS HERE DO NOT CHANGE IT IDK HOW IT WORKS HAHAHHAA
-//     bl: [width, 0],
-//     tl: [width, height],
-//     tr: [0, height],
-//     br: [0, 0],
-//   };
-
-//   const toAngle = ([x, y]: number[]): number => {
-//     const dx = x - centerX;
-//     const dy = y - centerY;
-//     let angle = Math.atan2(dy, dx) * (180 / Math.PI);
-//     angle = (angle - 90 + 360) % 360; // Shift to start at top (12 o'clock) and ensure positive
-//     return angle;
-//   };
-
-//   const toPercent = (angle: number): number => (angle / 360) * 100;
-
-//   const result: { [key: string]: { angle: string; percent: number } } = {};
-//   for (const [name, pos] of Object.entries(corners)) {
-//     const angle = toAngle(pos);
-//     result[name] = {
-//       angle: angle.toFixed(2) + '°',
-//       percent: parseFloat(toPercent(angle).toFixed(2)),
-//     };
-//   }
-
-//   return result as {
-//     tr: { angle: string; percent: number };
-//     br: { angle: string; percent: number };
-//     bl: { angle: string; percent: number };
-//     tl: { angle: string; percent: number };
-//   };
-// }
 
 function cornerAnglesInPercent(
   width: number,

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-"use client";
+"use client"
 import { useState } from "react";
 import { motion, Variants } from 'framer-motion';
 import { HiOutlineDocumentDownload as ResumeIcon } from 'react-icons/hi';
@@ -7,6 +7,14 @@ import { TvScreen, useGlitch } from "@/components/tv-screen";
 import AestheticKeyboard from "@/components/aesthetic-keyboard";
 
 import { IconCamera, IconCommandKey, IconGithubAlt } from '@/assets/icons';
+import { Link as ScrollLink } from 'react-scroll';
+import Link from "next/link";
+import Container from "../container";
+import FloatingCircle, { getContainerVariants } from '@/components/floating-circle/floating-circle';
+
+// ICONS
+import { SiTypescript } from 'react-icons/si';
+import { FaReact } from 'react-icons/fa';
 
 const Hero: React.FC = () => {
   const [tvState, setTvState] = useState<'github' | 'command' | 'picture'>(
@@ -16,82 +24,216 @@ const Hero: React.FC = () => {
   
   return (
     <>
-    <div className="flex flex-row justify-around">
-
-        <HeroHeading />
-        <div className="flex shrink-0 flex-col gap-4 self-center">
-                <TvScreen glitch={glitch}>
-                {tvState === 'github' ? (
-                    <IconGithubAlt />
-                ) : tvState === 'command' ? (
-                    <IconCommandKey />
-                ) : tvState === 'picture' ? (
-                    <>
-                    <span className="absolute top-2 right-4 z-20 font-mono text-xs">
-                        That&apos;s me
-                    </span>
-                    <img
-                        src="https://avatars.githubusercontent.com/nelteano"
-                        className="pointer-events-none object-cover grayscale"
-                        alt="Avatar"
-                    />
-                    </>
-                ) : (
-                    <></>
-                )}
-                </TvScreen>
-                <div className="active pointer-events-auto z-40 grid h-max shrink-0 grid-cols-3 gap-[3px] self-center rounded-lg bg-black p-[4px]">
-                <AestheticKeyboard
-                    width={160 + 3}
-                    spanContainerClass="col-span-2 z-[5]"
-                    className="col-span-2 bg-[#DBD6CB]"
-                    containerClass="bg-[#DBD6CB]"
-                />
-                <AestheticKeyboard
-                    spanContainerClass="z-[4]"
-                    className="bg-[#DBD6CB]"
-                    containerClass="bg-[#DBD6CB]"
-                    onPointerDown={() => {
-                    setTvState('command');
-                    setTimeout(() => {
-                        triggerGlitch();
-                    }, 20);
-                    }}
+       <Container className="relative z-100 bg-white" maxWidth="7xl">
+        <div className="flex flex-row gap-5 gap-y-20 pt-24 pb-24 lg:flex-row">
+          {/* Left Side */}
+          <div className="flex flex-grow flex-col space-y-5 py-0">
+            <div className="flex flex-col space-y-5">
+                <motion.div
+                  className="relative z-10 text-sm text-gray-800 md:text-base"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{
+                    delay: 1,
+                    type: 'spring',
+                    bounce: 0.7,
+                    duration: 2,
+                  }}
                 >
-                    <IconCommandKey className="text-neutral-800" />
-                </AestheticKeyboard>
-                <AestheticKeyboard
-                    spanContainerClass="z-[3]"
-                    onPointerDown={() => {
-                    setTvState('github');
-                    setTimeout(() => {
-                        triggerGlitch();
-                    }, 20);
-                    }}
+                  <span className="text-typography-foreground flex space-x-2">
+                    <motion.div
+                      initial={{ rotate: 0 }}
+                      animate={{
+                        scale: [
+                          1, 2.4, 2.4, 2.2, 2.4, 2.4, 2.2, 2.4, 2.2, 2.4, 2.2,
+                          2.4, 1,
+                        ],
+                        rotate: [0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0],
+                      }}
+                      transition={{ delay: 2, duration: 3 }}
+                    >
+                      👋
+                    </motion.div>
+                    <div>Hello there! I am</div>
+                  </span>
+                </motion.div>
+                <HeroHeading />
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.7 }}
+                  className="text-typography-foreground relative z-10 mt-1 max-w-sm text-sm md:text-base lg:max-w-md"
                 >
-                    <IconGithubAlt />
-                </AestheticKeyboard>
-                <AestheticKeyboard
-                    spanContainerClass="z-[2]"
-                    className="bg-[#DBD6CB]"
-                    containerClass="bg-[#DBD6CB]"
-                    onPointerDown={() => {
-                    setTvState('picture');
-                    setTimeout(() => {
-                        triggerGlitch();
-                    }, 20);
-                    }}
+                  A code-slinging <b>Software Engineer</b> from the Philippines
+                  who&apos;s on a quest to touch people&apos;s lives, one app at a
+                  time. 🚀
+                </motion.p>
+              </div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2 }}
+                className="flex space-x-3"
+              >
+                <ScrollLink
+                  to={'contact-section'}
+                  smooth={true}
+                  offset={5}
+                  duration={500}
                 >
-                    <IconCamera className="text-neutral-600" />
-                </AestheticKeyboard>
-                <AestheticKeyboard
-                    spanContainerClass="z-[1]"
-                    className="bg-[#DBD6CB]"
-                    containerClass="bg-[#DBD6CB]"
-                />
+                  {/* TODO: Make into a button.tsx component. */}
+                  <button className="hover:bg-primary text-primary border-primary relative z-10 truncate border bg-transparent bg-clip-padding px-6 py-3 text-sm backdrop-blur-sm backdrop-filter transition ease-out select-none hover:text-white md:text-base">
+                    Get In Touch
+                  </button>
+                </ScrollLink>
+                <Link
+                  target="_blank"
+                  className="group relative z-20 transition hover:shadow-lg"
+                  href="/JONEL-TEANO-RESUME.pdf"
+                >
+                  <span className="bg-primary relative z-10 flex transform items-center space-x-1 px-6 py-3 text-sm text-white transition ease-out will-change-transform select-none group-hover:-translate-y-1.5 md:text-base">
+                    <ResumeIcon size="1.2rem" className="relative" />
+                    <span className="relative">Resume</span>
+                  </span>
+                  <span className="bg-primary-dark absolute inset-0"></span>
+                </Link>
+              </motion.div>
+            </div>
+          <div className="flex shrink-0 flex-col gap-4 self-center">
+                  <TvScreen glitch={glitch}>
+                  {tvState === 'github' ? (
+                      <IconGithubAlt />
+                  ) : tvState === 'command' ? (
+                      <IconCommandKey />
+                  ) : tvState === 'picture' ? (
+                      <>
+                      <span className="absolute top-2 right-4 z-20 font-mono text-xs">
+                          That&apos;s me
+                      </span>
+                      <img
+                          src="https://avatars.githubusercontent.com/nelteano"
+                          className="pointer-events-none object-cover grayscale"
+                          alt="Avatar"
+                      />
+                      </>
+                  ) : (
+                      <></>
+                  )}
+                  </TvScreen>
+                  <div className="active pointer-events-auto z-40 grid h-max shrink-0 grid-cols-3 gap-[3px] self-center rounded-lg bg-black p-[4px]">
+                  <AestheticKeyboard
+                      width={160 + 3}
+                      spanContainerClass="col-span-2 z-[5]"
+                      className="col-span-2 bg-[#DBD6CB]"
+                      containerClass="bg-[#DBD6CB]"
+                  />
+                  <AestheticKeyboard
+                      spanContainerClass="z-[4]"
+                      className="bg-[#DBD6CB]"
+                      containerClass="bg-[#DBD6CB]"
+                      onPointerDown={() => {
+                      setTvState('command');
+                      setTimeout(() => {
+                          triggerGlitch();
+                      }, 20);
+                      }}
+                  >
+                      <IconCommandKey className="text-neutral-800" />
+                  </AestheticKeyboard>
+                  <AestheticKeyboard
+                      spanContainerClass="z-[3]"
+                      onPointerDown={() => {
+                      setTvState('github');
+                      setTimeout(() => {
+                          triggerGlitch();
+                      }, 20);
+                      }}
+                  >
+                      <IconGithubAlt />
+                  </AestheticKeyboard>
+                  <AestheticKeyboard
+                      spanContainerClass="z-[2]"
+                      className="bg-[#DBD6CB]"
+                      containerClass="bg-[#DBD6CB]"
+                      onPointerDown={() => {
+                      setTvState('picture');
+                      setTimeout(() => {
+                          triggerGlitch();
+                      }, 20);
+                      }}
+                  >
+                      <IconCamera className="text-neutral-600" />
+                  </AestheticKeyboard>
+                  <AestheticKeyboard
+                      spanContainerClass="z-[1]"
+                      className="bg-[#DBD6CB]"
+                      containerClass="bg-[#DBD6CB]"
+                  />
                 </div>
             </div>
-    </div>
+        </div>
+        <motion.div
+            variants={getContainerVariants(0.2, 1)}
+            initial="hidden"
+            animate="visible"
+            className="hidden md:block"
+        >
+          <FloatingCircle
+            style={{ right: '50rem', top: '5rem' }}
+            orbitSize="45rem"
+            orbitClass="border-gray-300"
+            toastMessage={
+              <span>
+                Yes, I&apos;m good at <b className="text-[#60a5fa]">React</b>!
+              </span>
+            }
+          >
+            <FaReact className="text-blue-400" size="2rem" />
+          </FloatingCircle>
+          <FloatingCircle
+            style={{ right: '30rem', bottom: '10rem' }}
+            orbitSize="25rem"
+            orbitClass="border-gray-300"
+            nucleusClass="bg-[#ffe58e]"
+            toastMessage={
+              <span>
+                I also do <b>C#</b> with{' '}
+                <b className="text-[#68217A]">.NET Core</b>!
+              </span>
+            }
+          >
+            <motion.svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 100 100"
+              width="50"
+              height="50"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <circle cx="50" cy="50" r="45" fill="#68217A" />
+              <text x="50%" y="50%" textAnchor="middle" dy=".3em" fontSize="40" fill="white">
+                C#
+              </text>
+            </motion.svg>
+          </FloatingCircle>
+          <FloatingCircle
+            style={{ left: '5rem', bottom: '1.5rem' }}
+            orbitClass="border-gray-300"
+            nucleusClass="bg-[#0044d0]"
+            toastMessage={
+              <span>
+                Definitely a <b className="text-[#007acc]">Typescript Expert</b>{' '}
+                here!
+              </span>
+            }
+          >
+            <span className="block overflow-hidden bg-white">
+              <SiTypescript size="2rem" color="#007acc" />
+            </span>
+          </FloatingCircle>
+        </motion.div>
+      </Container>
     </>
   );
 }
@@ -167,7 +309,7 @@ const HeroHeading: React.FC = () => {
           );
         })}
       </motion.div>
-      <span className="hero-text leading-none font-black tracking-tight lg:text-8xl">
+      <span className="hero-text leading-none font-black tracking-tight lg:text-8xl" style={{ minWidth: '0.2em', display: 'inline-block' }}>
         {' '}
       </span>
       <motion.div

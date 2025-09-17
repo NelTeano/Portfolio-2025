@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
+import Nav from "@/components/navbar";
+import NextTopLoader from "nextjs-toploader";
+import { Toaster } from 'react-hot-toast';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +37,19 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <NextTopLoader color="var(--primary)" showSpinner={false} />
+            <Nav />
             {children}
+            <Toaster
+              toastOptions={{
+                style: {
+                  background: 'var(--background)',
+                  color: 'var(--foreground)',
+                  borderWidth: '1px',
+                  borderColor: 'var(--border)',
+                },
+              }}
+            />
           </ThemeProvider>
       </body>
     </html>
