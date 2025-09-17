@@ -8,9 +8,6 @@ import AestheticKeyboard from "@/components/aesthetic-keyboard";
 
 import { IconCamera, IconCommandKey, IconGithubAlt } from '@/assets/icons';
 
-
-
-
 const Hero: React.FC = () => {
   const [tvState, setTvState] = useState<'github' | 'command' | 'picture'>(
     'picture'
