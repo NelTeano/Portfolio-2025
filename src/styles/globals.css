@@ -89,7 +89,7 @@
 }
 
 .dark {
-  --background: #1C1C1C;
+  --background: #1a1614;
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
@@ -124,8 +124,11 @@
   --hero-from: var(--primary-400);
   --hero-to: var(--primary-600);
   --primary: #4A90FF;       /* bright sky blue for highlights */
---primary-dark: #2D82B7;  /* steel blue for buttons/links */
---primary-darker: #1122CC; /* deep royal blue for strong emphasis */ 
+  --primary-dark: #2D82B7;  /* steel blue for buttons/links */
+  --primary-darker: #1122CC; /* deep royal blue for strong emphasis */ 
+  --typography: rgb(255, 255, 255);
+  --typography-foreground: rgb(200, 200, 200);
+  --typography-foreground-light: rgb(150, 150, 150);
 }
 
 @layer base {

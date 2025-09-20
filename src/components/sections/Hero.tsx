@@ -24,7 +24,7 @@ const Hero: React.FC = () => {
   
   return (
     <>
-       <Container className="relative z-100 bg-white" maxWidth="7xl">
+       <Container className="relative z-100 bg-background" maxWidth="7xl">
         <div className="flex flex-row gap-5 gap-y-20 pt-24 pb-24 lg:flex-row">
           {/* Left Side */}
           <div className="flex flex-grow flex-col space-y-5 py-0">
@@ -40,7 +40,7 @@ const Hero: React.FC = () => {
                     duration: 2,
                   }}
                 >
-                  <span className="text-typography-foreground flex space-x-2">
+                  <span className="text-typography-foreground text-neutral-300 flex space-x-2">
                     <motion.div
                       initial={{ rotate: 0 }}
                       animate={{
